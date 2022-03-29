@@ -5,11 +5,12 @@ nav {
     padding: 0 18rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
-nav h1 {
-    margin-right: 14rem;
-}
+// nav h1 {
+//     margin-right: 14rem;
+// }
 
 .nav-search {
     background: #efefef;
@@ -48,9 +49,18 @@ nav h1 {
 .nav-icons {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 200px;
 }
 
 .nav-icons img {
-    width: 30px;
+    width: 25px;
     height: auto;
+}
+
+.nav-profile {
+    width: 25px;
+    height: 25px;
+    background: #000;
+    border-radius: 100%;
 }

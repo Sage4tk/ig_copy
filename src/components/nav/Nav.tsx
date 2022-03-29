@@ -5,6 +5,8 @@ import "./nav_styles.scss";
 //svgs, imgs, and icons
 import search from "./search.svg";
 import home from "./home.svg";
+import add from "./add.svg";
+import request from "./request.svg";
 
 export default function Nav() {
     //input text state
@@ -25,6 +27,9 @@ export default function Nav() {
             </div>
             <div className="nav-icons">
                 <img src={home} alt=""/>
+                <img src={add} alt="" />
+                <img src={request} alt="" />
+                <div className="nav-profile"></div>
             </div>
         </nav>
     )
