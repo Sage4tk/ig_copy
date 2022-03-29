@@ -1,7 +1,10 @@
+//components
+import Nav from "./components/nav/Nav";
+
 function App() {
   return (
     <div className="App">
-      <h1>Instagram copy</h1>
+      <Nav />
     </div>
   );
 }

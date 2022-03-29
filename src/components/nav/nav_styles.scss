@@ -1,0 +1,56 @@
+nav {
+    width: 100vw;
+    border-bottom: 1px solid #dbdbdb;
+    height: 60px;
+    padding: 0 18rem;
+    display: flex;
+    align-items: center;
+}
+
+nav h1 {
+    margin-right: 14rem;
+}
+
+.nav-search {
+    background: #efefef;
+    height: 37px;
+    width: 265px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    position: relative;
+}
+
+.nav-search img {
+    height: auto;
+    width: 16px;
+    margin-right: 0.5rem;
+    position: absolute;
+}
+
+.nav-search input {
+    background: #efefef;
+    border:none;
+    font-size: 1rem;
+    margin-left: 1.2rem;
+}
+
+.nav-search input:focus {
+    outline: none;
+    margin-left: 0;
+}
+
+.nav-search input:focus + .icon {
+    display: none;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icons img {
+    width: 30px;
+    height: auto;
+}
