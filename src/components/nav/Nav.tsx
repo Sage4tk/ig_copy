@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./nav_styles.scss";
 
@@ -8,7 +8,7 @@ import home from "./home.svg";
 import add from "./add.svg";
 import request from "./request.svg";
 
-export default function Nav() {
+const Nav:React.FC<any> = () => {
     //input text state
     const [inputText, setInputText] = useState("");
 
@@ -23,7 +23,6 @@ export default function Nav() {
             <div className="nav-search">
                 <input placeholder="Search" value={inputText} onChange={(e) => setInputText(e.target.value)}/>
                 <img src={search} className="icon" alt="" />
-                
             </div>
             <div className="nav-icons">
                 <img src={home} alt=""/>
@@ -34,3 +33,5 @@ export default function Nav() {
         </nav>
     )
 }
+
+export default Nav;
