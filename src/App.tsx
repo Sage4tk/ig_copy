@@ -1,3 +1,5 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth'
@@ -5,6 +7,7 @@ import 'firebase/compat/auth'
 
 //components
 import Nav from "./components/nav/Nav";
+import Home from "./pages/home/Home"
 
 firebase.initializeApp({
   apiKey: "AIzaSyAXscWNKhoh4AwpfgTxra-DnkdCgq_kCVY",
@@ -18,9 +21,12 @@ firebase.initializeApp({
 
 function App() {
   return (
-    <div className="App">
-      <Nav />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/test" element={<Nav />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
