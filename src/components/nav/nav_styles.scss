@@ -63,4 +63,55 @@ nav {
     height: 25px;
     background: #000;
     border-radius: 100%;
+    position: relative;
+}
+
+.drop-down {
+    position: absolute;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 230px;
+    right: -10px;
+    bottom: -84px;
+    border-radius: 10px;
+    // &::after {
+    //     content: "";
+    //     width: 20px;
+    //     height: 20px;
+    //     top: -5px;
+    //     right: 12px;
+    //     background-color: #fff;
+    //     position: absolute;
+    //     transform: rotate(45deg);
+    // }
+}
+
+.arrow {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 30px;
+    transform: rotate(45deg);
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.drop-down div {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    z-index: 1;
+    &:hover {
+        background-color: #fafafa;
+    }
+}
+
+.drop-down > div:last-child {
+    border-top: 2px #dbdbdb solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.drop-down > div:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }

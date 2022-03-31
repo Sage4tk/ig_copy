@@ -12,10 +12,8 @@ const Nav:React.FC<any> = () => {
     //input text state
     const [inputText, setInputText] = useState("");
 
-
-    useEffect(() => {
-        console.log(inputText);
-    }, [])
+    //menu toggle
+    const [menu, setMenu] = useState(false);
 
     return (
         <nav>
@@ -28,9 +26,27 @@ const Nav:React.FC<any> = () => {
                 <img src={home} alt=""/>
                 <img src={add} alt="" />
                 <img src={request} alt="" />
-                <div className="nav-profile"></div>
+                <div className="nav-profile" onClick={() => {setMenu(!menu)}}>
+                    {menu && <DropDown />}
+                </div>   
             </div>
         </nav>
+    )
+}
+
+const DropDown:React.FC<any> = () => {
+    return (
+        <>
+        <div className="arrow"></div>
+        <div className="drop-down">
+            <div>
+                <p>Profile</p>
+            </div>
+            <div>
+                <p>Log Out</p>
+            </div>
+        </div>    
+        </>
     )
 }
 
