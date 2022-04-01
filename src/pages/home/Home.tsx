@@ -1,21 +1,19 @@
 //context
-import { useUser, useLogin } from "../../context/AuthContext"
+import { useUser } from "../../context/AuthContext"
 
 const Home:React.FC<any> = () => {
 
-    const user = useUser();
-    const login = useLogin();
+    const { user, signIn } = useUser();
 
     return (
         <div>
             {user ? <h1>There is user</h1>:<Login />}
-            <button>Login</button>
+            <button onClick={signIn}>Login</button>
         </div>
     )
 }
 
 const Login:React.FC<any> = () => {
-    const login = useLogin();
     return (
         <div>
             <h1>Log in page</h1>

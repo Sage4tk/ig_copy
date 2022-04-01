@@ -17,17 +17,11 @@ firebase.initializeApp({
 
 const auth:any = firebase.auth();
 
-const AuthContext = createContext({});
-const SignInContext = createContext({});
+const AuthContext = createContext<any>({});
 
 //user hook
 export const useUser = () => {
     return useContext(AuthContext);
-}
-
-//log in hook
-export const useLogin = () => {
-    return useContext(SignInContext);
 }
 
 export const AuthProvider:React.FC<any> = ({children}) => {
@@ -39,10 +33,11 @@ export const AuthProvider:React.FC<any> = ({children}) => {
     }
 
     return (
-        <AuthContext.Provider value={user}>
-            <SignInContext.Provider value={signIn}>
+        <AuthContext.Provider value={{
+            user,
+            signIn
+        }}>
             {children}
-            </SignInContext.Provider>
         </AuthContext.Provider>
     )
 }
