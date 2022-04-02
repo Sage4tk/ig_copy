@@ -32,10 +32,17 @@ export const AuthProvider:React.FC<any> = ({children}) => {
         auth.signInWithPopup(provider);
     }
 
+    const signOut = () => {
+        if (user) {
+            auth.signOut();
+        }
+    }
+
     return (
         <AuthContext.Provider value={{
             user,
-            signIn
+            signIn,
+            signOut
         }}>
             {children}
         </AuthContext.Provider>
