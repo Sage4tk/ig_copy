@@ -8,6 +8,9 @@ import home from "./home.svg";
 import add from "./add.svg";
 import request from "./request.svg";
 
+//context
+import { useUser } from "../../context/AuthContext";
+
 const Nav:React.FC<any> = () => {
     //input text state
     const [inputText, setInputText] = useState("");
@@ -35,6 +38,9 @@ const Nav:React.FC<any> = () => {
 }
 
 const DropDown:React.FC<any> = () => {
+    //logout
+    const { signOut } = useUser();
+
     return (
         <>
         <div className="arrow"></div>
@@ -43,7 +49,7 @@ const DropDown:React.FC<any> = () => {
                 <p>Profile</p>
             </div>
             <div>
-                <p>Log Out</p>
+                <p onClick={signOut}>Log Out</p>
             </div>
         </div>    
         </>

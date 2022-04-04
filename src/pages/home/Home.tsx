@@ -3,6 +3,7 @@ import { useUser } from "../../context/AuthContext"
 
 //components
 import Login from "./Login";
+import UserHome from "./UserHome";
 
 const Home:React.FC<any> = () => {
 
@@ -10,7 +11,7 @@ const Home:React.FC<any> = () => {
 
     return (
         <>
-            {user ? <h1>There is user</h1>:<Login />}
+            {user ? <UserHome />:<Login />}
         </>
     )
 }
