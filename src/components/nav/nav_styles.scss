@@ -2,15 +2,20 @@ nav {
     width: 100vw;
     border-bottom: 1px solid #dbdbdb;
     height: 60px;
-    padding: 0 18rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
-// nav h1 {
-//     margin-right: 14rem;
-// }
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    width: 960px;
+    padding: 0 1.2rem;
+}
 
 .nav-search {
     background: #efefef;
@@ -114,4 +119,10 @@ nav {
 .drop-down > div:first-child {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+@media only screen and (max-width: 640px) {
+    .nav-search {
+        display: none;
+    }
 }
