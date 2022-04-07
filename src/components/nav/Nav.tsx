@@ -80,7 +80,16 @@ const AddPost:React.FC<AddProps> = ({ open }) => {
     return (
         <div className="add-container">
             <div className="add-window">
-
+                <div className="add-header">
+                    <p>Create new post</p>
+                </div>
+                <div className="add-body">
+                    <div>
+                        
+                    </div>
+                    <p>Drag photo here</p>
+                    <button>Select from computer</button>
+                </div>
             </div>
         </div>
     )
