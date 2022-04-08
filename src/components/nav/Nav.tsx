@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 
 import "./nav_styles.scss";
 
@@ -41,7 +41,7 @@ const Nav:React.FC<any> = () => {
                 </div>
             </div>
         </nav>
-        <AddPost open={addPost} />
+        <AddPost open={addPost} setOpen={setAddPost} />
         </>
     )
 }
@@ -70,16 +70,24 @@ const DropDown:React.FC<DropProps> = ({ user }) => {
 }
 
 interface AddProps {
-    open: boolean
+    open: boolean,
+    setOpen: Dispatch<any>
 }
 
-const AddPost:React.FC<AddProps> = ({ open }) => {
+const AddPost:React.FC<AddProps> = ({ open, setOpen }) => {
+
+    const [formHandler, setFormHandler] = useState({
+        caption:"",
+        img:""
+    })
 
     if (!open) return (null)
 
     return (
-        <div className="add-container">
-            <div className="add-window">
+        <>
+        <div className="add-container" onClick={() => {setOpen(!open)}}>
+        </div>
+        <div className="add-window">
                 <div className="add-header">
                     <p>Create new post</p>
                 </div>
@@ -88,10 +96,11 @@ const AddPost:React.FC<AddProps> = ({ open }) => {
                         
                     </div>
                     <p>Drag photo here</p>
-                    <button>Select from computer</button>
+                    <input type="file" id="img" style={{display:"none"}} />
+                    <label htmlFor="img">Select from computer</label>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -141,6 +141,12 @@ nav {
     // min-height: 391px;
     // max-height: 898px;
     background: #fff;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    margin-top: -290px;
+    margin-left: -270px;
 }
 
 .add-header {
@@ -166,7 +172,7 @@ nav {
     height: calc(580px - 3rem);
 }
 
-.add-body button {
+.add-body label {
     background: #0095f6;
     color: #fff;
     border: none;
