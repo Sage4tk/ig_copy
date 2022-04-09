@@ -11,6 +11,9 @@ import request from "./request.svg";
 //context
 import { useUser } from "../../context/AuthContext";
 
+//components
+import Post from "./Post";
+
 const Nav:React.FC<any> = () => {
     //input text state
     const [inputText, setInputText] = useState("");
@@ -41,7 +44,7 @@ const Nav:React.FC<any> = () => {
                 </div>
             </div>
         </nav>
-        <AddPost open={addPost} setOpen={setAddPost} />
+        <Post open={addPost} setOpen={setAddPost} />
         </>
     )
 }
@@ -65,41 +68,6 @@ const DropDown:React.FC<DropProps> = ({ user }) => {
                 <p onClick={signOut}>Log Out</p>
             </div>
         </div>    
-        </>
-    )
-}
-
-interface AddProps {
-    open: boolean,
-    setOpen: Dispatch<any>
-}
-
-const AddPost:React.FC<AddProps> = ({ open, setOpen }) => {
-
-    const [formHandler, setFormHandler] = useState({
-        caption:"",
-        img:""
-    })
-
-    if (!open) return (null)
-
-    return (
-        <>
-        <div className="add-container" onClick={() => {setOpen(!open)}}>
-        </div>
-        <div className="add-window">
-                <div className="add-header">
-                    <p>Create new post</p>
-                </div>
-                <div className="add-body">
-                    <div>
-                        
-                    </div>
-                    <p>Drag photo here</p>
-                    <input type="file" id="img" style={{display:"none"}} />
-                    <label htmlFor="img">Select from computer</label>
-                </div>
-            </div>
         </>
     )
 }
