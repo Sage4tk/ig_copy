@@ -10,7 +10,7 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
     //ref for input
     const fileRef = useRef<any>();
     
-    const [formHandler, setFormHandler] = useState({
+    const [formHandler, setFormHandler] = useState<any>({
         caption:"",
         img:""
     })
@@ -20,14 +20,29 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
 
     //img checker
     const checkImg = (event:any) => {
-        if (event.target.files && event.target.files.length === 1) {
+        //check if image is jpg jpeg or png
+        const imgName = event.target.files[0].name;
+        
+        if (imgName.slice(-4) === ".jpg" || (imgName.slice(-4) === ".png" || imgName.slice(-5) === ".jpeg")) {
             setFormHandler({...formHandler,img:event.target.files[0]});
             setPage(1)
-        }
+        };
+
+    }
+
+    //close Post and reset image upload
+    const closeReset = () => {
+        setFormHandler({
+            ...formHandler,
+            img: ""
+        })
+        setPage(0);
+        setPriviewImg(null);
+        setOpen(false);
     }
 
     //image preview
-    const [previewImg, setPriviewImg] = useState();
+    const [previewImg, setPriviewImg] = useState<any>();
 
     useEffect(() => {
         if(!formHandler.img) return;
@@ -45,7 +60,7 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
 
     return (
         <>
-        <div className="add-container" onClick={() => {setOpen(!open)}}>
+        <div className="add-container" onClick={closeReset}>
         </div>
         <div className="add-window">
             <div style={{display: formHandler.img ? "none" : "block"}} >
@@ -62,6 +77,7 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
                 </div>
             </div>
             <ViewPage page={page} img={previewImg} />
+            <button onClick={() => {console.log(formHandler.img.name)}} >LOL</button>
         </div>
         </>
     )
