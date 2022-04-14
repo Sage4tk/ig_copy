@@ -1,5 +1,8 @@
 import React, { Dispatch, useState, useRef, useEffect } from "react";
 
+//context
+import { useUser } from "../../context/AuthContext";
+
 interface AddProps {
     open: boolean,
     setOpen: Dispatch<any>
@@ -22,7 +25,7 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
     const checkImg = (event:any) => {
         //check if image is jpg jpeg or png
         const imgName = event.target.files[0].name;
-        
+
         if (imgName.slice(-4) === ".jpg" || (imgName.slice(-4) === ".png" || imgName.slice(-5) === ".jpeg")) {
             setFormHandler({...formHandler,img:event.target.files[0]});
             setPage(1)
@@ -62,7 +65,7 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
         <>
         <div className="add-container" onClick={closeReset}>
         </div>
-        <div className="add-window">
+        <div className="add-window" style={{width: page === 0 ? "540px": "840px", marginLeft: page === 0 ? "-270px":"-420px"}}>
             <div style={{display: formHandler.img ? "none" : "block"}} >
                 <div className="add-header" >
                     <p>Create new post</p>
@@ -77,7 +80,6 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
                 </div>
             </div>
             <ViewPage page={page} img={previewImg} />
-            <button onClick={() => {console.log(formHandler.img.name)}} >LOL</button>
         </div>
         </>
     )
@@ -90,6 +92,20 @@ interface viewProps {
 
 const ViewPage:React.FC<viewProps> = ({ page, img }) => {
 
+    const { user } = useUser();
+
+    const [txtLength, setTxtLength] = useState(0);
+
+    const inputHandler = (e:any) => {
+        if (e.target.value.length <= 200) {
+            setTxtLength(e.target.value.length)
+        } 
+    }
+
+    useEffect(() => {
+        console.log(user)
+    }, [user])
+
     if (page !== 1) return (null);
 
     return (
@@ -97,7 +113,18 @@ const ViewPage:React.FC<viewProps> = ({ page, img }) => {
         <div className="add-header">
             <p>Create new post</p>
         </div>
-        <img src={img} />
+        <div className="comment-img">
+            <img src={img} />
+            <div className="comment-input">
+                <div className="comment-header">
+                    <img src={user.photoURL} />
+                    <p>{user.displayName}</p>
+                    
+                </div>
+                <textarea placeholder="Write a caption..." onChange={inputHandler} maxLength={200} />
+                <p className="limit">{txtLength}/200</p>
+            </div>
+        </div>
         </>
     )
 }
