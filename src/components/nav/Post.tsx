@@ -1,7 +1,13 @@
 import React, { Dispatch, useState, useRef, useEffect } from "react";
 
+//firebase
+import app from "../../firebase";
+import "firebase/compat/storage";
+
 //context
 import { useUser } from "../../context/AuthContext";
+
+const storage = app.storage();
 
 interface AddProps {
     open: boolean,
@@ -9,6 +15,8 @@ interface AddProps {
 }
 
 const Post:React.FC<AddProps> = ({ open, setOpen }) => {
+
+   
 
     //ref for input
     const fileRef = useRef<any>();
@@ -59,6 +67,11 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
         convertFile.readAsDataURL(formHandler.img);
     }, [formHandler.img])
 
+    //submit image to firebase storage and write on firebase db
+    const submitForm = () => {
+        const uploadImg = storage.ref("Users/lol").put(formHandler.img);
+    }
+
     if (!open) return (null)
 
     return (
@@ -79,7 +92,8 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
                     <label htmlFor="img">Select from computer</label>
                 </div>
             </div>
-            <ViewPage page={page} img={previewImg} />
+            <ViewPage page={page} img={previewImg} formHandler={formHandler} setFormHandler={setFormHandler} />
+            <button onClick={() => {submitForm()}}>upload</button>
         </div>
         </>
     )
@@ -87,10 +101,12 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
 
 interface viewProps {
     page: number,
-    img: any
+    img: any,
+    formHandler: object,
+    setFormHandler: any
 }
 
-const ViewPage:React.FC<viewProps> = ({ page, img }) => {
+const ViewPage:React.FC<viewProps> = ({ page, img, formHandler, setFormHandler }) => {
 
     const { user } = useUser();
 
@@ -99,12 +115,9 @@ const ViewPage:React.FC<viewProps> = ({ page, img }) => {
     const inputHandler = (e:any) => {
         if (e.target.value.length <= 200) {
             setTxtLength(e.target.value.length)
+            setFormHandler({...formHandler, caption: e.target.value})
         } 
     }
-
-    useEffect(() => {
-        console.log(user)
-    }, [user])
 
     if (page !== 1) return (null);
 
@@ -119,7 +132,6 @@ const ViewPage:React.FC<viewProps> = ({ page, img }) => {
                 <div className="comment-header">
                     <img src={user.photoURL} />
                     <p>{user.displayName}</p>
-                    
                 </div>
                 <textarea placeholder="Write a caption..." onChange={inputHandler} maxLength={200} />
                 <p className="limit">{txtLength}/200</p>

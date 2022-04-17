@@ -1,21 +1,13 @@
 import firebase from "firebase/compat/app";
 import 'firebase/compat/auth';
 
+import app from "../firebase";
+
 import { createContext, useContext } from "react";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 
-firebase.initializeApp({
-    apiKey: "AIzaSyAXscWNKhoh4AwpfgTxra-DnkdCgq_kCVY",
-    authDomain: "instagram-copy-f5d54.firebaseapp.com",
-    projectId: "instagram-copy-f5d54",
-    storageBucket: "instagram-copy-f5d54.appspot.com",
-    messagingSenderId: "790511415129",
-    appId: "1:790511415129:web:fc6276589aa94394dda648",
-    measurementId: "G-K941PZTKQX"
-})
-
-const auth:any = firebase.auth();
+const auth:any = app.auth();
 
 const AuthContext = createContext<any>({});
 
