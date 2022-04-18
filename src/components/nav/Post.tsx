@@ -3,11 +3,13 @@ import React, { Dispatch, useState, useRef, useEffect } from "react";
 //firebase
 import app from "../../firebase";
 import "firebase/compat/storage";
+import "firebase/compat/firestore";
 
 //context
 import { useUser } from "../../context/AuthContext";
 
 const storage = app.storage();
+const db = app.firestore();
 
 interface AddProps {
     open: boolean,
@@ -16,7 +18,8 @@ interface AddProps {
 
 const Post:React.FC<AddProps> = ({ open, setOpen }) => {
 
-   
+    //context
+    const { user } = useUser();
 
     //ref for input
     const fileRef = useRef<any>();
@@ -69,7 +72,33 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
 
     //submit image to firebase storage and write on firebase db
     const submitForm = () => {
-        const uploadImg = storage.ref("Users/lol").put(formHandler.img);
+        const uploadImg = storage.ref(`Images/${user.uid}-${formHandler.img.name}`).put(formHandler.img);
+
+        uploadImg.on(
+            "state_changed",
+            (snapshot) => {
+                let progress;
+                progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+                console.log(progress)
+            },
+            (err) => {
+                console.log(err)
+            },
+            () => {
+                storage.ref("Images").child(`${user.uid}-${formHandler.img.name}`).getDownloadURL()
+                .then((imgUrl) => {
+                    db.collection("UserImages").add({
+                        userId: user.uid,
+                        userName: user.displayName,
+                        avatar: user.photoURL,
+                        caption: formHandler.caption,
+                        imgUrl,
+                        likes: {},
+                        comments: {}
+                    })
+                })
+            }
+        )
     }
 
     if (!open) return (null)
