@@ -8,6 +8,9 @@ import "firebase/compat/firestore";
 //context
 import { useUser } from "../../context/AuthContext";
 
+//images, icons, svgs
+import arrow from "./arrow.svg";
+
 const storage = app.storage();
 const db = app.firestore();
 
@@ -77,9 +80,7 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
         uploadImg.on(
             "state_changed",
             (snapshot) => {
-                let progress;
-                progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
-                console.log(progress)
+                closeReset();
             },
             (err) => {
                 console.log(err)
@@ -121,8 +122,7 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
                     <label htmlFor="img">Select from computer</label>
                 </div>
             </div>
-            <ViewPage page={page} img={previewImg} formHandler={formHandler} setFormHandler={setFormHandler} />
-            <button onClick={() => {submitForm()}}>upload</button>
+            <ViewPage page={page} img={previewImg} formHandler={formHandler} setFormHandler={setFormHandler} submit={submitForm} />
         </div>
         </>
     )
@@ -132,10 +132,11 @@ interface viewProps {
     page: number,
     img: any,
     formHandler: object,
-    setFormHandler: any
+    setFormHandler: any,
+    submit: Function
 }
 
-const ViewPage:React.FC<viewProps> = ({ page, img, formHandler, setFormHandler }) => {
+const ViewPage:React.FC<viewProps> = ({ page, img, formHandler, setFormHandler, submit }) => {
 
     const { user } = useUser();
 
@@ -153,7 +154,9 @@ const ViewPage:React.FC<viewProps> = ({ page, img, formHandler, setFormHandler }
     return (
         <>
         <div className="add-header">
+            <button className="back-btn"><img src={arrow} /></button>
             <p>Create new post</p>
+            <button className="post-btn" onClick={() => {submit()}}>Share</button>
         </div>
         <div className="comment-img">
             <img src={img} />
