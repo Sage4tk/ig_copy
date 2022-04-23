@@ -7,6 +7,7 @@ import Nav from "../../components/nav/Nav";
 const UserHome:React.FC<any> = () => {
     //signout
     const { signOut } = useUser();
+
     return (
         <>
         <Nav />

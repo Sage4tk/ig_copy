@@ -8,7 +8,8 @@ import 'firebase/compat/auth'
 
 //components
 import Nav from "./components/nav/Nav";
-import Home from "./pages/home/Home"
+import Home from "./pages/home/Home";
+import Profile from "./pages/profile/Profile";
 
 firebase.initializeApp({
   apiKey: "AIzaSyAXscWNKhoh4AwpfgTxra-DnkdCgq_kCVY",
@@ -25,6 +26,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/:id" element={<Profile />} />
         <Route path="/test" element={<Nav />} />
       </Routes>
     </BrowserRouter>
