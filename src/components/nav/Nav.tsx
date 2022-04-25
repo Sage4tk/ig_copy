@@ -1,4 +1,5 @@
-import React, { Dispatch, useEffect, useState } from "react";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 import "./nav_styles.scss";
 
@@ -34,20 +35,23 @@ const Nav:React.FC<any> = () => {
                     <input placeholder="Search" value={inputText} onChange={(e) => setInputText(e.target.value)}/>
                     <img src={search} className="icon" alt="" />
                 </div>
-                <div className="nav-icons">
+                {user && <div className="nav-icons">
                     <img src={home} alt=""/>
                     <img src={add} alt="" onClick={()=> {setAddPost(!addPost)}}/>
                     <img src={request} alt="" />
-                    <div className="nav-profile" onClick={() => {setMenu(!menu)}} style={{backgroundImage:`url(${user.photoURL})`, backgroundSize:"cover"}}>
+                    <div className="nav-profile" onClick={() => {setMenu(!menu)}} style={{backgroundImage:`url(${user.photoURL})`,backgroundSize:"cover"}}>
                         {menu && <DropDown user={user} />}
                     </div>   
-                </div>
+                </div>}
+                {!user && <NavLink to="/" className="nav-login">Log In</NavLink>}
             </div>
         </nav>
         <Post open={addPost} setOpen={setAddPost} />
         </>
     )
 }
+
+// backgroundImage:`url(${user.photoURL})`
 
 interface DropProps {
     user: object

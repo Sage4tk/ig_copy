@@ -24,10 +24,6 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
     //context
     const { user } = useUser();
 
-    useEffect(() => {
-        console.log(user)
-    }, [user])
-
     //ref for input
     const fileRef = useRef<any>();
     

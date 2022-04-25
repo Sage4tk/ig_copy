@@ -19,14 +19,16 @@ export const useUser = () => {
 export const AuthProvider:React.FC<any> = ({children}) => {
     const [user]:any = useAuthState(auth);
 
-    const signIn = () => {
+    const signIn = async () => {
         const provider = new firebase.auth.GoogleAuthProvider();
-        auth.signInWithPopup(provider);
+        await auth.signInWithPopup(provider);
+        localStorage.setItem("login", "true")
     }
 
     const signOut = () => {
         if (user) {
             auth.signOut();
+            localStorage.removeItem("login")
         }
     }
 

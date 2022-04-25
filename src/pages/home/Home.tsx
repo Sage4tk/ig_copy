@@ -9,6 +9,8 @@ const Home:React.FC<any> = () => {
 
     const { user, signOut } = useUser();
 
+    if (localStorage.getItem("login") === "true") return <UserHome />
+
     return (
         <>
             {user ? <UserHome />:<Login />}
