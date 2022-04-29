@@ -25,3 +25,60 @@
     width: 200px;
     cursor: pointer;
 }
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.37);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.username-header {
+    background-color: #fff;
+    border-bottom: 1px #dbdbdb solid;
+    padding: 1rem 2rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.username-header h1 {
+    font-size: 1rem;
+}
+
+.setusername {
+    background-color: #fff;
+    padding: 2rem 2rem 1rem 2rem;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.setusername input {
+    border: none;
+    border-bottom: 1px #dbdbdb solid;
+    margin-bottom: 1rem;
+    &:focus {
+        outline: none;
+    }
+}
+
+.setusername button {
+    font-weight: 600;
+    background-color: #0095f6;
+    border-radius: 4px;
+    border: none;
+    color:#fff;
+    padding: 7px 10px;
+    font-size: 0.8rem !important;
+    text-decoration: none;
+    &:active {
+        opacity: 0.7;
+    }
+}

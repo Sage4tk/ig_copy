@@ -1,9 +1,10 @@
 import React, { Dispatch, useState, useRef, useEffect } from "react";
 
+import { db } from "../../firebase";
+
 //firebase
 import app from "../../firebase";
 import "firebase/compat/storage";
-import "firebase/compat/firestore";
 
 //context
 import { useUser } from "../../context/AuthContext";
@@ -12,7 +13,6 @@ import { useUser } from "../../context/AuthContext";
 import arrow from "./arrow.svg";
 
 const storage = app.storage();
-const db = app.firestore();
 
 interface AddProps {
     open: boolean,
