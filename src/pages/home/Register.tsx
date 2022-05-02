@@ -15,7 +15,7 @@ const Register:React.FC<RegisterProps> = ({ register, uid, setRegister }) => {
     const [formHandler, setFormHandler] = useState<string>("");
 
     //display error
-    const [errorInput, setErrorInput] = useState<boolean | string>(false);
+    const [errorInput, setErrorInput] = useState<null | string>(null);
 
     //check db if user exist
     const checkDB = async() => {
@@ -40,6 +40,7 @@ const Register:React.FC<RegisterProps> = ({ register, uid, setRegister }) => {
     const submitUsername = (e:any) => {
         e.preventDefault();
         if ((/\s/g).test(formHandler) || formHandler.length < 3) {
+            console.log('test')
             setErrorInput("Username must contain more than 3 letters");
         } else {
             checkDB();
@@ -56,8 +57,8 @@ const Register:React.FC<RegisterProps> = ({ register, uid, setRegister }) => {
                 </div>
                 <form className="setusername" onSubmit={submitUsername}>
                     <input type="text" name="username" placeholder="username" onChange={(e) => {setFormHandler(e.target.value)}}/>
-                    {errorInput && <p className="error">User name must contain more than 3 letters</p>}
-                    <button type="submit" disabled>Submit</button>
+                    {errorInput && <p className="error">{errorInput}</p>}
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
