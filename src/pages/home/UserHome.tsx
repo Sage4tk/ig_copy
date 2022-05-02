@@ -17,16 +17,17 @@ const UserHome:React.FC<any> = () => {
     const [register, setRegister] = useState(true)
 
     const findUser = async() => {
-        const snapShot = await db.collection("users").where("user","==","iCtX6Wf3mOxOqBk9wE4oOFvfjwJb2d").get();
+        const snapShot = await db.collection("users").where("uid","==",user.uid).get();
 
         if (snapShot.empty) {
                 setRegister(false)
-                return;
         };
     }
 
     useEffect(() => {
-        findUser();        
+        if(user) {
+            findUser();
+        }      
     }, [user])
     
     return (
@@ -35,7 +36,7 @@ const UserHome:React.FC<any> = () => {
         <div className="home-home">
 
         </div>
-        <Register register={register} />
+        {user && <Register register={register} setRegister={setRegister} uid={user.uid}/>}
         </>
     )
 }
