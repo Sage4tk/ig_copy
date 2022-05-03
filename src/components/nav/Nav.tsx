@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import "./nav_styles.scss";
@@ -11,14 +11,24 @@ import request from "./request.svg";
 
 //context
 import { useUser } from "../../context/AuthContext";
+import { useName } from "../../context/UserContext";
 
 //components
 import Post from "./Post";
 
 const Nav:React.FC<any> = () => {
+    //set username
+    const { userDeed, login } = useName();
+
     //input text state
     const [inputText, setInputText] = useState("");
     const { user } = useUser();
+
+    useEffect(() => {
+        if (user) {
+            login(user.uid);
+        }
+    }, [user])
 
     //menu toggle
     const [menu, setMenu] = useState(false);
@@ -60,13 +70,14 @@ interface DropProps {
 const DropDown:React.FC<DropProps> = ({ user }) => {
     //logout
     const { signOut } = useUser();
+    const { userDeed } = useName();
 
     return (
         <>
         <div className="arrow"></div>
         <div className="drop-down">
             <div>
-                <p>Profile</p>
+                <NavLink to={`/${userDeed.username}`}>Profile</NavLink>
             </div>
             <div>
                 <p onClick={signOut}>Log Out</p>
