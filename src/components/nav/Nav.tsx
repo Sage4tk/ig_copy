@@ -18,12 +18,13 @@ import Post from "./Post";
 
 const Nav:React.FC<any> = () => {
     //set username
-    const { userDeed, login } = useName();
+    const { login } = useName();
 
     //input text state
     const [inputText, setInputText] = useState("");
     const { user } = useUser();
-
+    
+    //set username
     useEffect(() => {
         if (user) {
             login(user.uid);
