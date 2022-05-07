@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import { db } from "../../firebase";
 
 
@@ -20,9 +20,13 @@ const Profile:React.FC = () => {
         const snapshot = await db.collection("users").where("username", "==", id).get();
         
         if (snapshot.empty) {
-
+            setUserFind(true);
         }
     }
+
+    useEffect(() => {
+        findUser()
+    }, [id])
 
     return (
         <>
@@ -45,14 +49,19 @@ const FindingUser:React.FC = () => {
 
 const UserNotFound:React.FC = () => {
     return (
-        <div></div>
+        <div className="user-not-found">
+            <div className="nfound-container">
+                <h1>Sorry, this page isn't available.</h1>
+                <p>The link you followed may be broken, or the page maye have been removed. <Link to="/">Go back to instagram.</Link></p>
+            </div>
+        </div>
     )
 }
 
 const UserProfile:React.FC = () => {
     return (
         <div>
-            
+
         </div>
     )
 }

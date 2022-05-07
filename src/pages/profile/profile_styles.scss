@@ -1,0 +1,19 @@
+.user-not-found {
+    width: 100vw;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6rem;
+    background-color: #fafafa;
+}
+
+.nfound-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+}
