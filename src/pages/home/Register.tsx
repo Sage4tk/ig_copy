@@ -1,13 +1,18 @@
 import { Dispatch, useEffect, useState } from "react";
 import { db } from "../../firebase";
 
+//context
+import { useUser } from "../../context/AuthContext";
+
 interface RegisterProps {
     register: boolean,
-    uid: string,
     setRegister: Dispatch<any>
 }
 
-const Register:React.FC<RegisterProps> = ({ register, uid, setRegister }) => {
+const Register:React.FC<RegisterProps> = ({ register, setRegister }) => {
+    //user context
+    const { user } = useUser();
+
     //db
     const userRef = db.collection("users");
 
@@ -25,7 +30,11 @@ const Register:React.FC<RegisterProps> = ({ register, uid, setRegister }) => {
             if (snapshot.empty) {
                 const addUser = await userRef.add({
                     username: formHandler,
-                    uid
+                    uid: user.uid,
+                    avatar: user.photoURL,
+                    followers: [],
+                    following: [],
+                    posts: []
                 });
                 setRegister(true);
             } else {

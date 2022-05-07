@@ -36,7 +36,7 @@ const UserHome:React.FC<any> = () => {
         <div className="home-home">
 
         </div>
-        {user && <Register register={register} setRegister={setRegister} uid={user.uid}/>}
+        {user && <Register register={register} setRegister={setRegister} />}
         </>
     )
 }

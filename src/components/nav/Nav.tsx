@@ -15,6 +15,7 @@ import { useName } from "../../context/UserContext";
 
 //components
 import Post from "./Post";
+import { sign } from "crypto";
 
 const Nav:React.FC<any> = () => {
     //set username
@@ -41,7 +42,7 @@ const Nav:React.FC<any> = () => {
         <>
         <nav>
             <div className="nav-container">
-                <h1>Instagram</h1>
+                <NavLink to="/" className="nav-logo">Instagram</NavLink>
                 <div className="nav-search">
                     <input placeholder="Search" value={inputText} onChange={(e) => setInputText(e.target.value)}/>
                     <img src={search} className="icon" alt="" />
@@ -68,10 +69,15 @@ interface DropProps {
     user: object
 }
 
-const DropDown:React.FC<DropProps> = ({ user }) => {
+const DropDown:React.FC<DropProps> = () => {
     //logout
     const { signOut } = useUser();
-    const { userDeed } = useName();
+    const { userDeed, removeData } = useName();
+
+    const logOut = () => {
+        removeData();
+        signOut();
+    }
 
     return (
         <>
@@ -81,7 +87,7 @@ const DropDown:React.FC<DropProps> = ({ user }) => {
                 <NavLink to={`/${userDeed.username}`}>Profile</NavLink>
             </div>
             <div>
-                <p onClick={signOut}>Log Out</p>
+                <p onClick={logOut}>Log Out</p>
             </div>
         </div>    
         </>
