@@ -12,7 +12,7 @@ import Nav from "../../components/nav/Nav";
 const Profile:React.FC = () => {
     const { id } = useParams();
 
-    const [userFind, setUserFind] = useState<boolean | string>(false);
+    const [userFind, setUserFind] = useState<boolean | string | object>(false);
 
 
     //find profile
@@ -21,6 +21,10 @@ const Profile:React.FC = () => {
         
         if (snapshot.empty) {
             setUserFind(true);
+        } else {
+            snapshot.forEach(doc => {
+                setUserFind(doc.data())
+            })
         }
     }
 
@@ -28,12 +32,16 @@ const Profile:React.FC = () => {
         findUser()
     }, [id])
 
+    useEffect(() => {
+        console.log(userFind)
+    }, [userFind])
+
     return (
         <>
         <Nav />
         {userFind === false ? <FindingUser />:
         userFind === true ? <UserNotFound />:
-        <UserProfile />
+        <UserProfile userFind={userFind}/>
         }        
         </>
     ) 
@@ -58,10 +66,24 @@ const UserNotFound:React.FC = () => {
     )
 }
 
-const UserProfile:React.FC = () => {
+const UserProfile:React.FC<any> = ({ userFind }) => {
     return (
-        <div>
-
+        <div className="user-wrapper">
+            <div className="user-container">
+                <div className="user-header">
+                    <img src={userFind.avatar} />
+                    <div className="details">
+                        <div>
+                            <p>{userFind.username}</p>
+                        </div>
+                        <div className="following">
+                            <p>{userFind.posts.length} posts</p>
+                            <p>{userFind.followers.length} followers</p>
+                            <p>{userFind.following.length} following</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

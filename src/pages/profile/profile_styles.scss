@@ -17,3 +17,30 @@
         margin-bottom: 1rem;
     }
 }
+
+
+//found user
+.user-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-container {
+    max-width: 960px;
+}
+
+.user-header {
+    width: 960px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.following {
+    display: flex;
+}
+
+.following > *:not(:last-child) {
+    margin-right: 1rem;
+}
