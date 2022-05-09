@@ -71,15 +71,20 @@ const UserProfile:React.FC<any> = ({ userFind }) => {
         <div className="user-wrapper">
             <div className="user-container">
                 <div className="user-header">
-                    <img src={userFind.avatar} />
+                    <div className="pfp">
+                        <img src={userFind.avatar} />
+                    </div>
                     <div className="details">
-                        <div>
+                        <div className="username-section">
                             <p>{userFind.username}</p>
                         </div>
                         <div className="following">
-                            <p>{userFind.posts.length} posts</p>
-                            <p>{userFind.followers.length} followers</p>
-                            <p>{userFind.following.length} following</p>
+                            <p><span className="bold">{userFind.posts.length}</span> posts</p>
+                            <p><span className="bold">{userFind.followers.length}</span> followers</p>
+                            <p><span className="bold">{userFind.following.length}</span> following</p>
+                        </div>
+                        <div>
+                            <p>no bio</p>
                         </div>
                     </div>
                 </div>

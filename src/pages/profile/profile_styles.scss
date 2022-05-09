@@ -28,19 +28,48 @@
 
 .user-container {
     max-width: 960px;
+    padding: 0 1.2rem;
 }
 
 .user-header {
-    width: 960px;
-    padding: 1.2rem;
+    width: calc(960px - 2.4rem);
     display: flex;
     flex-direction: row;
+    height: 150px;
+}
+
+.details {
+    width: 68.5%;
+}
+
+.username-section {
+    margin-bottom: 20px;
+    p{
+        font-size: 28px;
+    }
+}
+
+.pfp {
+    height: 100%;
+    width: 290px;
+    display: flex;
+    justify-content: center;
+    img {
+        height: 100%;
+        aspect-ratio: 1;
+        border-radius: 100%;
+    }
 }
 
 .following {
     display: flex;
+    margin-bottom: 20px;
 }
 
 .following > *:not(:last-child) {
-    margin-right: 1rem;
+    margin-right: 2.5rem;
+}
+
+.bold {
+    font-weight: bold;
 }
