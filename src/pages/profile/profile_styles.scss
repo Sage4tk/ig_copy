@@ -24,6 +24,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #fafafa;
 }
 
 .user-container {
@@ -36,6 +37,7 @@
     display: flex;
     flex-direction: row;
     height: 150px;
+    margin: 2rem 0;
 }
 
 .details {
@@ -44,8 +46,23 @@
 
 .username-section {
     margin-bottom: 20px;
+    display: flex;
     p{
         font-size: 28px;
+        margin-right: 2rem;
+    }
+}
+
+.follow-btn {
+    background-color: #0095F6;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 0 24px;
+    cursor: pointer;
+    &:active {
+        opacity: 0.8;
     }
 }
 

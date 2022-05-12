@@ -8,6 +8,7 @@ import "./profile_styles.scss";
 
 //components
 import Nav from "../../components/nav/Nav";
+import { useName } from "../../context/UserContext";
 
 const Profile:React.FC = () => {
     const { id } = useParams();
@@ -32,16 +33,12 @@ const Profile:React.FC = () => {
         findUser()
     }, [id])
 
-    useEffect(() => {
-        console.log(userFind)
-    }, [userFind])
-
     return (
         <>
         <Nav />
         {userFind === false ? <FindingUser />:
         userFind === true ? <UserNotFound />:
-        <UserProfile userFind={userFind}/>
+        <UserProfile userFind={userFind} id={id} />
         }        
         </>
     ) 
@@ -66,7 +63,9 @@ const UserNotFound:React.FC = () => {
     )
 }
 
-const UserProfile:React.FC<any> = ({ userFind }) => {
+const UserProfile:React.FC<any> = ({ userFind, id }) => {
+    const{ userDeed } = useName();
+
     return (
         <div className="user-wrapper">
             <div className="user-container">
@@ -77,6 +76,7 @@ const UserProfile:React.FC<any> = ({ userFind }) => {
                     <div className="details">
                         <div className="username-section">
                             <p>{userFind.username}</p>
+                            <FollowBtn id={id} userDeed={userDeed} />
                         </div>
                         <div className="following">
                             <p><span className="bold">{userFind.posts.length}</span> posts</p>
@@ -90,6 +90,19 @@ const UserProfile:React.FC<any> = ({ userFind }) => {
                 </div>
             </div>
         </div>
+    )
+}
+
+const FollowBtn:React.FC<any> = ({ id, userDeed }) => {
+
+    if (!userDeed) return (null);
+
+    if (id === userDeed.username) return (null)
+
+    return (
+        <button className="follow-btn">
+            Follow
+        </button>
     )
 }
 

@@ -15,7 +15,6 @@ import { useName } from "../../context/UserContext";
 
 //components
 import Post from "./Post";
-import { sign } from "crypto";
 
 const Nav:React.FC<any> = () => {
     //set username
