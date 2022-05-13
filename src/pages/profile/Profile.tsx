@@ -95,12 +95,32 @@ const UserProfile:React.FC<any> = ({ userFind, id }) => {
 
 const FollowBtn:React.FC<any> = ({ id, userDeed }) => {
 
+    const userRef = db.collection("users")
+
+    const follow = async () => {
+        //gets current logged user and adds following
+        // const currentSnap = await userRef.where("uid", "==", userDeed.uid).get();
+
+        // currentSnap.forEach(doc => {
+        //     const followingData = doc.data();
+        //     userRef.doc(doc.id).update({following: [...followingData.following, id]});
+        // })
+        
+        //gets target account and adds follower
+        const targetSnap = await userRef.where("username", "==", id).get();
+
+        targetSnap.forEach(doc => {
+            const follwerData = doc.data();
+            userRef.doc(doc.id).update({followers: [...follwerData.followers, userDeed.username]})
+        })
+    }
+
     if (!userDeed) return (null);
 
     if (id === userDeed.username) return (null)
 
     return (
-        <button className="follow-btn">
+        <button className="follow-btn" onClick={follow}>
             Follow
         </button>
     )
