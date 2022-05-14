@@ -99,12 +99,12 @@ const FollowBtn:React.FC<any> = ({ id, userDeed }) => {
 
     const follow = async () => {
         //gets current logged user and adds following
-        // const currentSnap = await userRef.where("uid", "==", userDeed.uid).get();
+        const currentSnap = await userRef.where("uid", "==", userDeed.uid).get();
 
-        // currentSnap.forEach(doc => {
-        //     const followingData = doc.data();
-        //     userRef.doc(doc.id).update({following: [...followingData.following, id]});
-        // })
+        currentSnap.forEach(doc => {
+            const followingData = doc.data();
+            userRef.doc(doc.id).update({following: [...followingData.following, id]});
+        })
         
         //gets target account and adds follower
         const targetSnap = await userRef.where("username", "==", id).get();
@@ -115,9 +115,30 @@ const FollowBtn:React.FC<any> = ({ id, userDeed }) => {
         })
     }
 
+    const unfollow = async() => {
+        const currentSnap = await userRef.where("uid", "==", userDeed.uid).get();
+
+        currentSnap.forEach(doc => {
+            
+        })
+
+        const targetSnap = await userRef.where("username", "==", id).get();
+
+        targetSnap.forEach(doc => {
+
+        })
+
+    }
+
     if (!userDeed) return (null);
 
-    if (id === userDeed.username) return (null)
+    if (id === userDeed.username) return (null);
+
+    if (true) return (
+        <button>
+            Unfollow
+        </button>
+    )
 
     return (
         <button className="follow-btn" onClick={follow}>
