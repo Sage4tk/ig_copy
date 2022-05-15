@@ -30,7 +30,7 @@ const Profile:React.FC = () => {
     }
 
     useEffect(() => {
-        findUser()
+        findUser();
     }, [id])
 
     return (
@@ -97,7 +97,14 @@ const FollowBtn:React.FC<any> = ({ id, userDeed }) => {
 
     const userRef = db.collection("users")
 
+    //prevent follow again after folling
+    const [followed, setFollowed] = useState(0);
+
+    //follow method
     const follow = async () => {
+        //prevent spamming follow button
+        setFollowed(1);
+
         //gets current logged user and adds following
         const currentSnap = await userRef.where("uid", "==", userDeed.uid).get();
 
@@ -113,17 +120,28 @@ const FollowBtn:React.FC<any> = ({ id, userDeed }) => {
             const follwerData = doc.data();
             userRef.doc(doc.id).update({followers: [...follwerData.followers, userDeed.username]})
         })
+
+        setFollowed(2);
     }
 
+    
+
+
+    //unfollow mechanism
     const unfollow = async() => {
+
+        //get auth user
         const currentSnap = await userRef.where("uid", "==", userDeed.uid).get();
 
+        //remove in array of auth user
         currentSnap.forEach(doc => {
             
         })
 
+        //get target user
         const targetSnap = await userRef.where("username", "==", id).get();
 
+        //remove in array of auth target
         targetSnap.forEach(doc => {
 
         })
@@ -134,14 +152,16 @@ const FollowBtn:React.FC<any> = ({ id, userDeed }) => {
 
     if (id === userDeed.username) return (null);
 
-    if (true) return (
-        <button>
+    //unfollow button
+    if (userDeed.following.includes(id) || followed === 2) return (
+        <button className="follow-btn" onClick={unfollow}>
             Unfollow
         </button>
     )
 
+    //follow button
     return (
-        <button className="follow-btn" onClick={follow}>
+        <button className="follow-btn" onClick={follow} disabled={followed === 1?true:false}>
             Follow
         </button>
     )
