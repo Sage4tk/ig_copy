@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { db } from "../../firebase";
 
-
 //styles
 import "./profile_styles.scss";
 
@@ -125,17 +124,30 @@ const FollowBtn:React.FC<any> = ({ id, userDeed }) => {
     }
 
     
-
+    useEffect(() => {
+        console.log(userDeed)
+    })
 
     //unfollow mechanism
     const unfollow = async() => {
+
+        
 
         //get auth user
         const currentSnap = await userRef.where("uid", "==", userDeed.uid).get();
 
         //remove in array of auth user
         currentSnap.forEach(doc => {
-            
+
+            //filters user
+            let updateFollowing = doc.data().following.filter((e:any) => {
+                return e !== id
+            })
+
+            //remove in db
+            userRef.doc(doc.id).update({
+                following: updateFollowing
+            })
         })
 
         //get target user
@@ -143,7 +155,14 @@ const FollowBtn:React.FC<any> = ({ id, userDeed }) => {
 
         //remove in array of auth target
         targetSnap.forEach(doc => {
+            let updateFollwers = doc.data().followers.filter((e:any) => {
+                return e !== userDeed.username
+            })
 
+            //remeove in db
+            userRef.doc(doc.id).update({
+                followers: updateFollwers
+            })
         })
 
     }
