@@ -121,24 +121,20 @@ const FollowBtn:React.FC<any> = ({ id, userDeed }) => {
         })
 
         setFollowed(2);
+        setForce(false)
     }
-
     
-    useEffect(() => {
-        console.log(userDeed)
-    })
+    //force follow button when unfollwed
+    const [force, setForce] = useState(false);
 
     //unfollow mechanism
     const unfollow = async() => {
-
-        
 
         //get auth user
         const currentSnap = await userRef.where("uid", "==", userDeed.uid).get();
 
         //remove in array of auth user
         currentSnap.forEach(doc => {
-
             //filters user
             let updateFollowing = doc.data().following.filter((e:any) => {
                 return e !== id
@@ -165,11 +161,18 @@ const FollowBtn:React.FC<any> = ({ id, userDeed }) => {
             })
         })
 
+        setForce(true)
     }
 
     if (!userDeed) return (null);
 
     if (id === userDeed.username) return (null);
+
+    if (force) return (
+        <button className="follow-btn" onClick={follow} disabled={followed === 1?true:false}>
+            Follow
+        </button>
+    )
 
     //unfollow button
     if (userDeed.following.includes(id) || followed === 2) return (
