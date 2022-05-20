@@ -7,6 +7,7 @@ import "./profile_styles.scss";
 
 //components
 import Nav from "../../components/nav/Nav";
+import PostGrid from "./PostGrid";
 import { useName } from "../../context/UserContext";
 
 const Profile:React.FC = () => {
@@ -87,6 +88,7 @@ const UserProfile:React.FC<any> = ({ userFind, id }) => {
                         </div>
                     </div>
                 </div>
+                <PostGrid userDeed={userDeed} />
             </div>
         </div>
     )

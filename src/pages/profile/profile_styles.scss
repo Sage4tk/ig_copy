@@ -90,3 +90,18 @@
 .bold {
     font-weight: bold;
 }
+
+.post-container {
+    border-top: solid 1px #dbdbdb;
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: 290px 290px 290px;
+    justify-content: space-between;
+    row-gap: 20px;
+}
+
+.picture {
+    height: 290px;
+    width: 290px;
+    background: #dbdbdb;
+}
