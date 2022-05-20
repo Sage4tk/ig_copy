@@ -34,7 +34,7 @@ const Register:React.FC<RegisterProps> = ({ register, setRegister }) => {
                     avatar: user.photoURL,
                     followers: [],
                     following: [],
-                    posts: [],
+                    posts: 0,
                     bio: ""
                 });
                 setRegister(true);

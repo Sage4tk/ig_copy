@@ -78,7 +78,7 @@ const UserProfile:React.FC<any> = ({ userFind, id }) => {
                             <FollowBtn id={id} userDeed={userDeed} />
                         </div>
                         <div className="following">
-                            <p><span className="bold">{userFind.posts.length}</span> posts</p>
+                            <p><span className="bold">{userFind.posts}</span> posts</p>
                             <p><span className="bold">{userFind.followers.length}</span> followers</p>
                             <p><span className="bold">{userFind.following.length}</span> following</p>
                         </div>

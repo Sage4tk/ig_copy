@@ -8,6 +8,7 @@ import "firebase/compat/storage";
 
 //context
 import { useUser } from "../../context/AuthContext";
+import { useName } from "../../context/UserContext";
 
 //images, icons, svgs
 import arrow from "./arrow.svg";
@@ -23,6 +24,7 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
 
     //context
     const { user } = useUser();
+    const { userDeed } = useName();
 
     //ref for input
     const fileRef = useRef<any>();
@@ -85,19 +87,29 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
             (err) => {
                 console.log(err)
             },
-            () => {
+            async () => {
                 storage.ref("Images").child(`${user.uid}-${formHandler.img.name}`).getDownloadURL()
                 .then((imgUrl) => {
                     db.collection("UserImages").add({
                         userId: user.uid,
-                        userName: user.displayName,
+                        username: userDeed.username,
                         avatar: user.photoURL,
                         caption: formHandler.caption,
                         imgUrl,
-                        likes: {},
-                        comments: {}
+                        likes: [],
+                        comments: []
                     })
                 })
+
+                //adds post to user db
+                const addProf = await db.collection("users").where("uid", "==", user.uid).get();
+
+                addProf.forEach(doc => {
+                    db.collection('users').doc(doc.id).update({
+                        posts: doc.data().posts + 1
+                    })
+                })
+                
             }
         )
     }
