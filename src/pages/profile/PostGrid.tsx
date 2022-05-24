@@ -12,35 +12,35 @@ const PostGrid:React.FC<any> = ({ userDeed }) => {
 
     const [postPics] = useCollectionData(postRef);
 
+    //set open post
+    const [open, setOpen] = useState(false);
+
     useEffect(() => {
-        console.log(postPics)
-    }, [postPics])
+        console.log(open)
+    }, [open])
 
     return (
         <>
             <div className="post-container">
                 {postPics && postPics.map((data:any, index:number) => (
-                    <Picture data={data} key={index} />
+                    <Picture data={data} key={index} setOpen={setOpen} index={index} />
                 ))}
             </div>
+            <PictureFocus open={open} setOpen={setOpen} postLength={postPics?.length} />
         </>
     )
 }
 
-const Picture:React.FC<any> = ({ data }) => {
-
-    //open picture focus
-    const [focus, setFocus] = useState(false);
+const Picture:React.FC<any> = ({ data, setOpen, index }) => {
 
     return (
         <>
-        <div className="picture" style={{backgroundImage: `url(${data. imgUrl})`}} onClick={() => {setFocus(true)}} >
+        <div className="picture" style={{backgroundImage: `url(${data. imgUrl})`}} onClick={() => setOpen(index)} >
             <div className="picture-hover">
                 <p>{data.likes.length}</p>
                 <p>{data.comments.length}</p>
             </div>
         </div>
-        <PictureFocus data={data} />
         </>
     )
 }

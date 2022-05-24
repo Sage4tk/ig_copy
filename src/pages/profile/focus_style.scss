@@ -1,0 +1,32 @@
+.background-wrapper {
+    background: #000;
+    opacity: 0.8;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.post-wrapper {
+    position: fixed;
+    height: 100px;
+    z-index: 1;
+    width: 100px;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.left-arrow {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+}
+
+.right-arrow {
+    position: fixed;
+    z-index: 2;
+    right: 0;
+}
