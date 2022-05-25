@@ -1,4 +1,5 @@
 //styling
+import { useEffect } from "react";
 import "./focus_style.scss";
 
 interface PictureFocusProps {
@@ -21,6 +22,9 @@ const PictureFocus:React.FC<any> = ({ open, setOpen, posts }) => {
         }
     }
 
+    useEffect(() => {
+        console.log(posts[open])
+    }, [posts])
 
     if (open === false) return (null)
 
@@ -30,12 +34,17 @@ const PictureFocus:React.FC<any> = ({ open, setOpen, posts }) => {
         <button className="left-arrow" onClick={() => {moveLeft()}}>Left</button>
         <div className="post-wrapper">
             {posts && <div className="post-picture" style={{backgroundImage: `url(${posts[open].imgUrl})`}}></div>}
-
-            
             <div className="post-details">
                 <div className="post-header">
-                    <img />
+                    <img src={posts[open].avatar} />
                     <p>{posts[open].username}</p>
+                </div>
+            </div>
+            <div className="post-caption">
+                <img src={posts[open].avatar} />
+                <div>
+                    <p>{posts[open].username}</p>
+                    <p>post date: need to be put here</p>
                 </div>
             </div>
         </div>

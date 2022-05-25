@@ -8,16 +8,12 @@ import PictureFocus from "./PictureFocus";
 
 const PostGrid:React.FC<any> = ({ id }) => {
     //find posts
-    const postRef:any = db.collection("UserImages").where("userId", "==", id);
+    const postRef:any = db.collection("UserImages").where("username", "==", id);
 
     const [postPics] = useCollectionData(postRef);
 
     //set open post
     const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        console.log(open)
-    }, [open])
 
     return (
         <>
