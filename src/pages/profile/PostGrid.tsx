@@ -26,7 +26,7 @@ const PostGrid:React.FC<any> = ({ userDeed }) => {
                     <Picture data={data} key={index} setOpen={setOpen} index={index} />
                 ))}
             </div>
-            <PictureFocus open={open} setOpen={setOpen} postLength={postPics?.length} />
+            <PictureFocus open={open} setOpen={setOpen} posts={postPics} />
         </>
     )
 }

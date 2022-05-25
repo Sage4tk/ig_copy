@@ -8,27 +8,17 @@ interface PictureFocusProps {
     setFocus: Function
 }
 
-const PictureFocus:React.FC<any> = ({ open, setOpen, postLength }) => {
-
-    const [current, setCurrent] = useState<any>(null);
-
-    useEffect(() => {
-        setCurrent(open);
-    }, [])
-
-    useEffect(() => {
-        console.log(current)
-    }, [current])
+const PictureFocus:React.FC<any> = ({ open, setOpen, posts }) => {
 
     const moveLeft = () => {
-        if (current > 0) {
-            setCurrent(current - 1);
+        if (open > 0) {
+            setOpen(open - 1);
         }
     }
 
     const moveRight = () => {
-        if (current < postLength - 1) {
-            setCurrent(current + 1);
+        if (open < posts.length - 1) {
+            setOpen(open + 1);
         }
     }
 
@@ -37,10 +27,15 @@ const PictureFocus:React.FC<any> = ({ open, setOpen, postLength }) => {
 
     return (
         <>
-        <div className="background-wrapper"></div>
+        <div className="background-wrapper" onClick={() => {setOpen(false)}}></div>
         <button className="left-arrow" onClick={() => {moveLeft()}}>Left</button>
         <div className="post-wrapper">
+            {posts && <div className="post-picture" style={{backgroundImage: `url(${posts[open].imgUrl})`}}></div>}
+
             
+            <div className="post-details">
+
+            </div>  
         </div>
         <button className="right-arrow" onClick={() => {moveRight()}}>Right</button>
         </>

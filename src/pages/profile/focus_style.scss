@@ -11,12 +11,24 @@
 
 .post-wrapper {
     position: fixed;
-    height: 100px;
+    height: 700px;
     z-index: 1;
-    width: 100px;
-    top: 0;
-    left: 0;
+    width: 980px;
+    top: 50%;
+    margin-top: -350px;
+    left: 50%;
+    margin-left: -490px;
     background-color: #fff;
+    display: flex;
+}
+
+.post-picture {
+    background-color: #dbdbdb;
+    height: 100%;
+    width: 600px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .left-arrow {
