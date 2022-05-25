@@ -6,9 +6,9 @@ import { db } from "../../firebase";
 //components
 import PictureFocus from "./PictureFocus";
 
-const PostGrid:React.FC<any> = ({ userDeed }) => {
+const PostGrid:React.FC<any> = ({ id }) => {
     //find posts
-    const postRef:any = db.collection("UserImages").where("userId", "==", userDeed.uid);
+    const postRef:any = db.collection("UserImages").where("userId", "==", id);
 
     const [postPics] = useCollectionData(postRef);
 

@@ -88,7 +88,7 @@ const UserProfile:React.FC<any> = ({ userFind, id }) => {
                         </div>
                     </div>
                 </div>
-                {userDeed && <PostGrid userDeed={userDeed} />}
+                {id && <PostGrid id={id} />}
             </div>
         </div>
     )

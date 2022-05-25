@@ -31,6 +31,14 @@
     background-repeat: no-repeat;
 }
 
+.post-header {
+    width: calc(980px - 600px);
+    border-bottom: #efefef 1px solid;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
 .left-arrow {
     position: fixed;
     z-index: 2;

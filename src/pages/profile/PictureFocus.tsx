@@ -1,5 +1,4 @@
 //styling
-import { useEffect, useState } from "react";
 import "./focus_style.scss";
 
 interface PictureFocusProps {
@@ -34,8 +33,11 @@ const PictureFocus:React.FC<any> = ({ open, setOpen, posts }) => {
 
             
             <div className="post-details">
-
-            </div>  
+                <div className="post-header">
+                    <img />
+                    <p>{posts[open].username}</p>
+                </div>
+            </div>
         </div>
         <button className="right-arrow" onClick={() => {moveRight()}}>Right</button>
         </>
