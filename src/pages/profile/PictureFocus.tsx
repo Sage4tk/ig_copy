@@ -22,10 +22,6 @@ const PictureFocus:React.FC<any> = ({ open, setOpen, posts }) => {
         }
     }
 
-    useEffect(() => {
-        console.log(posts[open])
-    }, [posts])
-
     if (open === false) return (null)
 
     return (
@@ -36,17 +32,18 @@ const PictureFocus:React.FC<any> = ({ open, setOpen, posts }) => {
             {posts && <div className="post-picture" style={{backgroundImage: `url(${posts[open].imgUrl})`}}></div>}
             <div className="post-details">
                 <div className="post-header">
-                    <img src={posts[open].avatar} />
-                    <p>{posts[open].username}</p>
+                    <img src={posts[open].avatar} className="small-avatar" />
+                    <p className="name">{posts[open].username}</p>
+                </div>
+                <div className="post-caption">
+                    <img src={posts[open].avatar} className="small-avatar" />
+                    <div className="post-capcap">
+                        <p className="name">{posts[open].username}</p>
+                        <p>{posts[open].caption}</p>
+                    </div>
                 </div>
             </div>
-            <div className="post-caption">
-                <img src={posts[open].avatar} />
-                <div>
-                    <p>{posts[open].username}</p>
-                    <p>post date: need to be put here</p>
-                </div>
-            </div>
+            
         </div>
         <button className="right-arrow" onClick={() => {moveRight()}}>Right</button>
         </>

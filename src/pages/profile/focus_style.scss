@@ -37,17 +37,22 @@
     display: flex;
     align-items: center;
     padding: 1rem;
+}
 
-    img {
-        height: 32px;
-        width: auto;
-        border-radius: 100%;
-        margin-right: 0.8rem;
-    }
+.name {
+    font-weight: bold;
+    margin-right: 0.25rem;
+}
 
-    p {
-        font-weight: 500;
-    }
+.post-capcap {
+    display: flex;
+}
+
+.small-avatar {
+    height: 32px;
+    width: 32px;
+    border-radius: 100%;
+    margin-right: 0.8rem;
 }
 
 .left-arrow {
@@ -60,4 +65,10 @@
     position: fixed;
     z-index: 2;
     right: 0;
+}
+
+.post-caption {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
 }

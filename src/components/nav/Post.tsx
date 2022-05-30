@@ -3,10 +3,8 @@ import React, { Dispatch, useState, useRef, useEffect } from "react";
 import { db } from "../../firebase";
 
 //firebase
-import firebase from "firebase/compat";
 import app from "../../firebase";
 import "firebase/compat/storage";
-import "firebase/compat/database"
 
 //context
 import { useUser } from "../../context/AuthContext";
@@ -100,7 +98,6 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
                         imgUrl,
                         likes: [],
                         comments: [],
-                        date: firebase.database.ServerValue.TIMESTAMP
                     })
                 })
 
