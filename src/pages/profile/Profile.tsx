@@ -71,7 +71,7 @@ const UserProfile:React.FC<any> = ({ userFind, id }) => {
             <div className="user-container">
                 <div className="user-header">
                     <div className="pfp">
-                        <img src={userFind.avatar} />
+                        <img src={userFind.avatar} referrerPolicy="no-referrer" alt="" />
                     </div>
                     <div className="details">
                         <div className="username-section">
