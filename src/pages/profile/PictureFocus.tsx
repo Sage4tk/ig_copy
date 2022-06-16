@@ -42,8 +42,13 @@ const PictureFocus:React.FC<any> = ({ open, setOpen, posts }) => {
                         <p>{posts[open].caption}</p>
                     </div>
                 </div>
+                <div className="comment-input">
+                    <form>
+                        <input placeholder="Add a comment..."/>
+                        <button disabled={true}>Post</button>
+                    </form>
+                </div>
             </div>
-            
         </div>
         <button className="right-arrow" onClick={() => {moveRight()}}>Right</button>
         </>

@@ -9,6 +9,42 @@
     z-index: 1;
 }
 
+.post-details {
+    position: relative;
+}
+
+.comment-input {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-top: 1px solid #efefef;
+}
+
+.comment-input form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-input form input {
+    border: none;
+    
+    &:focus {
+        outline: none;
+    }
+}
+
+.comment-input form button {
+    color: #0095F6;
+    background: none;
+    border: none;
+    font-weight: bold;
+}
+
 .post-wrapper {
     position: fixed;
     height: 700px;
@@ -20,6 +56,7 @@
     margin-left: -490px;
     background-color: #fff;
     display: flex;
+    border-radius: 4px;
 }
 
 .post-picture {
