@@ -1,5 +1,5 @@
 //styling
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./focus_style.scss";
 
 interface PictureFocusProps {
@@ -20,6 +20,23 @@ const PictureFocus:React.FC<any> = ({ open, setOpen, posts }) => {
         if (open < posts.length - 1) {
             setOpen(open + 1);
         }
+    }
+
+    //add comment
+    const [commentHandler, setCommentHandler] = useState<any>({
+        comment: ""
+    })
+
+    const commentListener = (e:any) => {
+        setCommentHandler({
+            [e.target.name]: e.target.value
+        })
+        
+        console.log(commentHandler)
+    }
+
+    const addComment = (e:any) => {
+        e.preventDefault();
     }
 
     if (open === false) return (null)
@@ -43,9 +60,9 @@ const PictureFocus:React.FC<any> = ({ open, setOpen, posts }) => {
                     </div>
                 </div>
                 <div className="comment-input">
-                    <form>
-                        <input placeholder="Add a comment..."/>
-                        <button disabled={true}>Post</button>
+                    <form onSubmit={addComment}>
+                        <input placeholder="Add a comment..." name="comment" onChange={commentListener}/>
+                        <button disabled={commentHandler.comment ? false:true} type="submit">Post</button>
                     </form>
                 </div>
             </div>

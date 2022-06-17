@@ -43,6 +43,10 @@
     background: none;
     border: none;
     font-weight: bold;
+
+    &:disabled {
+        opacity: 0.4;
+    }
 }
 
 .post-wrapper {
