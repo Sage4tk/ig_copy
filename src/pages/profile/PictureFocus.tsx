@@ -2,6 +2,9 @@
 import { useEffect, useState } from "react";
 import "./focus_style.scss";
 
+//icons
+import arrow from "./larrow.svg"
+
 interface PictureFocusProps {
     data: object,
     focus: boolean
@@ -44,7 +47,7 @@ const PictureFocus:React.FC<any> = ({ open, setOpen, posts }) => {
     return (
         <>
         <div className="background-wrapper" onClick={() => {setOpen(false)}}></div>
-        <button className="left-arrow" onClick={() => {moveLeft()}}>Left</button>
+        <button className="left-arrow next-arrow" onClick={() => {moveLeft()}}><img src={arrow} /></button>
         <div className="post-wrapper">
             {posts && <div className="post-picture" style={{backgroundImage: `url(${posts[open].imgUrl})`}}></div>}
             <div className="post-details">
@@ -67,7 +70,7 @@ const PictureFocus:React.FC<any> = ({ open, setOpen, posts }) => {
                 </div>
             </div>
         </div>
-        <button className="right-arrow" onClick={() => {moveRight()}}>Right</button>
+        <button className="right-arrow next-arrow" onClick={() => {moveRight()}}><img src={arrow} className="rotate" /></button>
         </>
     )
 }

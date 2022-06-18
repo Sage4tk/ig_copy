@@ -44,6 +44,10 @@
     border: none;
     font-weight: bold;
 
+    &:active {
+        opacity: 0.8;
+    }
+
     &:disabled {
         opacity: 0.4;
     }
@@ -99,17 +103,48 @@
 .left-arrow {
     position: fixed;
     z-index: 2;
-    left: 0;
+    left: 16px;
+    top: 48%;
 }
 
 .right-arrow {
     position: fixed;
     z-index: 2;
-    right: 0;
+    right: 16px;
+    top: 48%;
 }
 
 .post-caption {
     display: flex;
     flex-direction: row;
     padding: 1rem;
+}
+
+.next-arrow {
+    background: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+
+    &:hover {
+        background: #ccc;
+    }
+
+    &:active {
+        background: #fff;
+    }
+
+    img {
+        width: 12px;
+        height: auto;
+    }
+}
+
+.rotate {
+    transform: rotate(180deg);
 }
