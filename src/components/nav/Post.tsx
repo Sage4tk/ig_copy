@@ -4,7 +4,9 @@ import { db } from "../../firebase";
 
 //firebase
 import app from "../../firebase";
+import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
+import "firebase/compat/firestore"
 
 //context
 import { useUser } from "../../context/AuthContext";
@@ -98,6 +100,7 @@ const Post:React.FC<AddProps> = ({ open, setOpen }) => {
                         imgUrl,
                         likes: [],
                         comments: [],
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
                     })
                 })
 
